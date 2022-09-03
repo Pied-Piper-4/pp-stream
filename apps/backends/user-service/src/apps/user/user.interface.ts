@@ -2,7 +2,7 @@ import { User } from './user.model';
 
 export interface UserSignupResponse {
   message?: string;
-  user?: User;
+  data?: User;
   token?: string;
   isCreated?: boolean;
   status?: string;

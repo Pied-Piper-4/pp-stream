@@ -43,7 +43,7 @@ export class UserService {
     const token = this.jwtService.sign(savedUser);
     return {
       message: 'User created successfully',
-      user: savedUser,
+      data: savedUser,
       token,
       status: 'success',
     };
@@ -70,7 +70,7 @@ export class UserService {
     const token = this.jwtService.sign(user);
     return {
       message: 'User logged in successfully',
-      user,
+      data: user,
       token,
       status: 'success',
     };
@@ -94,7 +94,7 @@ export class UserService {
 
       return {
         message: 'User logged in successfully',
-        user: newUser,
+        data: newUser,
         token,
         status: 'success',
       };
@@ -106,7 +106,7 @@ export class UserService {
 
     return {
       message: 'User logged in successfully',
-      user,
+      data: user,
       token,
       status: 'success',
     };
