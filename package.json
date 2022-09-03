@@ -10,8 +10,7 @@
     "api-start:meeting-service":"cd ./apps/backends/meeting-service && env-cmd -f ./env/.env.local npm run start:dev",
     "clean:web":"cd ./apps/frontend/pp-stream && npx rimraf node_modules && npm i",
     "start-api":"npm-run-all api-start:*",
-    "start:web":"cd ./apps/frontend/pp-stream && npm start",
-    "postinstall": "npm-run-all clean:api clean:web"
+    "start:web":"cd ./apps/frontend/pp-stream && npm start"
   },
   "private": true,
   "devDependencies": {
