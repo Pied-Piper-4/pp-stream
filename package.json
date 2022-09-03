@@ -5,12 +5,13 @@
   "scripts": {
     "api-clean:user-service":"cd ./apps/backends/user-service && npx rimraf node_modules && npm i",
     "api-clean:meeting-service":"cd ./apps/backends/meeting-service && npx rimraf node_modules && npm i",
-    "clean-api":"npm-run-all api-clean:*",
+    "clean:api":"npm-run-all api-clean:*",
     "api-start:user-service":"cd ./apps/backends/user-service && npm start:dev",
     "api-start:meeting-service":"cd ./apps/backends/meeting-service && npm start:dev",
     "clean:web":"cd ./apps/frontends/pp-stream && npx rimraf node_modules && npm i",
     "start-api":"npm-run-all api-start:*",
-    "start:web":"cd ./apps/frontends/pp-stream && npm start"
+    "start:web":"cd ./apps/frontends/pp-stream && npm start",
+    "postinstall": "npm-run-all clean:api clean:web"
   },
   "private": true,
   "devDependencies": {
