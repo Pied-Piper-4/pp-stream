@@ -15,7 +15,7 @@ export const Navbar = () => {
               {/* <span className="text-xl text-gray-700 font-semibold">
                 ppstream
               </span> */}
-              <img src="/images/logo.jpg" alt="logo" className="h-10" />
+              <img src="/images/newLogo.png" alt="logo" className="h-12" />
               {/* <span> | </span> */}
               {/* <div className="flex self-center space-x-8">
                 <h3>Home</h3>
@@ -24,7 +24,7 @@ export const Navbar = () => {
               </div> */}
             </div>
 
-            <h3>People</h3>
+            {/* <h3>People</h3> */}
             <button
               type="button"
               className="text-gray-900 flex self-center bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 "
