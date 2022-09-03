@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  user-services:
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+
+    container_name: user-services
+    ports:
+      - 4000:4000
+
+

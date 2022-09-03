@@ -4,10 +4,8 @@
   "license": "MIT",
   "scripts": {
     "api-clean:user-service":"cd ./apps/backends/user-service && npx rimraf node_modules && npm i",
-    "api-clean:meeting-service":"cd ./apps/backends/meeting-service && npx rimraf node_modules && npm i",
-    "clean-api":"npm-run-all api-clean:*",
-    "api-start:user-service":"cd ./apps/backends/user-service && npm start:dev",
-    "api-start:meeting-service":"cd ./apps/backends/meeting-service && npm start:dev",
+    "clean:api":"npm-run-all api-clean:*",
+    "api-start:user-service":"cd ./apps/backends/user-service && npm run  start:dev",
     "clean:web":"cd ./apps/frontend/pp-stream && npx rimraf node_modules && npm i",
     "start-api":"npm-run-all api-start:*",
     "start:web":"cd ./apps/frontend/pp-stream && npm start"
@@ -62,7 +60,8 @@
     "react-router-dom": "6.3.0",
     "regenerator-runtime": "0.13.7",
     "styled-components": "5.3.5",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "env-cmd": "^10.1.0"
   },
   "workspaces": [
     "packages/**"
