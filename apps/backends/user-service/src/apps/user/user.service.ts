@@ -45,6 +45,7 @@ export class UserService {
       message: 'User created successfully',
       user: savedUser,
       token,
+      status: 'success',
     };
   }
 
@@ -71,6 +72,7 @@ export class UserService {
       message: 'User logged in successfully',
       user,
       token,
+      status: 'success',
     };
   }
 
@@ -94,6 +96,7 @@ export class UserService {
         message: 'User logged in successfully',
         user: newUser,
         token,
+        status: 'success',
       };
     }
 
@@ -105,6 +108,7 @@ export class UserService {
       message: 'User logged in successfully',
       user,
       token,
+      status: 'success',
     };
   }
 

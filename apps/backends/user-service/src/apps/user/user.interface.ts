@@ -5,6 +5,7 @@ export interface UserSignupResponse {
   user?: User;
   token?: string;
   isCreated?: boolean;
+  status?: string;
 }
 
 export type LoginUserResponse = UserSignupResponse;
