@@ -93,7 +93,8 @@ export class MeetingService {
       .find({
         creatorId: userId,
       })
-      .populate('liveUsers.userId');
+      .populate('liveUsers.userId')
+      .populate('creatorId');
 
     return {
       status: 'success',
