@@ -77,7 +77,7 @@ export class UserService {
   }
 
   async getUserById(id: string): Promise<UserDocument> {
-    return this.userModel.findById(id);
+    return this.userModel.findById(id).lean();
   }
 
   async googleAuthentication(

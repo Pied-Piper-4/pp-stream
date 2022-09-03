@@ -55,6 +55,7 @@ export class MeetingService {
     const meeting = await this.meetingModel.create({
       ...meetingDto,
       link: 'https://pp-stream.live/' + uuidv4(),
+      creatorId: userId,
     });
 
     const meetingToken = this.generateAgoraToken(meeting._id, true);
