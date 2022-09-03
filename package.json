@@ -8,7 +8,9 @@
     "clean-api":"npm-run-all api-clean:*",
     "api-start:user-service":"cd ./apps/backends/user-service && npm start:dev",
     "api-start:meeting-service":"cd ./apps/backends/meeting-service && npm start:dev",
-    "start-api":"npm-run-all api-start:*"
+    "web:clean":"cd ./apps/frontends/pp-stream && npx rimraf node_modules && npm i",
+    "start-api":"npm-run-all api-start:*",
+    "start:web":"cd ./apps/frontends/pp-stream && npm start"
   },
   "private": true,
   "devDependencies": {
