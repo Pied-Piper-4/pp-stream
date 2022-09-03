@@ -8,10 +8,11 @@ import { Comment, CommentSchema } from './comment.model';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtConfigService } from '../jwt/jwt.config.service';
+import { ChatGateway } from './chat.gateway';
 
 @Module({
   controllers: [CommentController],
-  providers: [CommentService],
+  providers: [CommentService, ChatGateway],
   imports: [
     UserModule,
     MeetingModule,

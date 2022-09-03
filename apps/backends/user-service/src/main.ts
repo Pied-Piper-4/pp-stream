@@ -3,6 +3,7 @@ import { AppModule } from './apps/app.module';
 import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { SocketIoAdapter } from './apps/socket-io.adapter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { abortOnError: false });
@@ -20,6 +21,8 @@ async function bootstrap() {
   SwaggerModule.setup('api-v1/api', app, document);
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.setGlobalPrefix(globalPrefix);
+  app.enableCors();
+  app.useWebSocketAdapter(new SocketIoAdapter(app));
   await app.listen(port);
 }
 bootstrap();
