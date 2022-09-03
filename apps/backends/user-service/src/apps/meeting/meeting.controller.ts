@@ -1,8 +1,7 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { Public } from '../../common';
+import { ApiResponse } from '../../util';
 import { CreateStreamDto, UpdateMeetingDto } from './dto/meeting.dto';
-import { CreateMeetingResponse } from './meeting.interface';
-import { MeetingDocument } from './meeting.model';
 import { MeetingService } from './meeting.service';
 
 @Controller('meeting')
@@ -13,21 +12,21 @@ export class MeetingController {
   async createMeeting(
     @Body() newMeetingDto: CreateStreamDto,
     @Param('userId') userId: string,
-  ): Promise<CreateMeetingResponse> {
+  ): Promise<ApiResponse> {
     return this.meetingService.createMeeting(userId, newMeetingDto);
   }
 
   @Post('get/:meetingId')
   async getMeetingById(
     @Param('meetingId') meetingId: string,
-  ): Promise<MeetingDocument> {
+  ): Promise<ApiResponse> {
     return this.meetingService.getMeetingById(meetingId);
   }
 
   @Post('get-all/:userId')
   async getAllUsersMeeting(
     @Param('userId') userId: string,
-  ): Promise<MeetingDocument[]> {
+  ): Promise<ApiResponse> {
     return this.meetingService.getAllUsersMeeting(userId);
   }
 
@@ -35,14 +34,14 @@ export class MeetingController {
   async updateMeeting(
     @Param('meetingId') meetingId: string,
     @Body() updateMeetingDto: UpdateMeetingDto,
-  ): Promise<MeetingDocument> {
+  ): Promise<ApiResponse> {
     return this.meetingService.updateMeeting(meetingId, updateMeetingDto);
   }
 
   @Post('delete/:meetingId')
   async deleteMeeting(
     @Param('meetingId') meetingId: string,
-  ): Promise<MeetingDocument> {
+  ): Promise<ApiResponse> {
     return this.meetingService.deleteMeeting(meetingId);
   }
 

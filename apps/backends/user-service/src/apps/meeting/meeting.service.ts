@@ -14,6 +14,7 @@ import {
 } from 'agora-access-token';
 import { ConfigService } from '@nestjs/config';
 import { CreateMeetingResponse } from './meeting.interface';
+import { ApiResponse } from '../../util';
 
 @Injectable()
 export class MeetingService {
@@ -44,7 +45,7 @@ export class MeetingService {
   async createMeeting(
     userId: string,
     meetingDto: CreateStreamDto,
-  ): Promise<CreateMeetingResponse> {
+  ): Promise<ApiResponse> {
     const userExists = await this.userService.getUserById(userId);
 
     if (!userExists) {
@@ -59,22 +60,28 @@ export class MeetingService {
     const meetingToken = this.generateAgoraToken(meeting._id, true);
 
     return {
-      meeting,
+      status: 'success',
       token: meetingToken,
+      data: meeting,
+      message: 'Meeting created successfully',
     };
   }
 
-  async getMeetingById(meetingId: string): Promise<MeetingDocument> {
+  async getMeetingById(meetingId: string): Promise<ApiResponse> {
     const meeting = await this.meetingModel.findById(meetingId);
 
     if (!meeting) {
       throw new Error('Meeting not found');
     }
 
-    return meeting;
+    return {
+      status: 'success',
+      data: meeting,
+      message: 'Meeting fetched successfully',
+    };
   }
 
-  async getAllUsersMeeting(userId: string): Promise<MeetingDocument[]> {
+  async getAllUsersMeeting(userId: string): Promise<ApiResponse> {
     const userExists = await this.userService.getUserById(userId);
 
     if (!userExists) {
@@ -87,13 +94,17 @@ export class MeetingService {
       })
       .populate('liveUsers.userId');
 
-    return meetings;
+    return {
+      status: 'success',
+      data: meetings,
+      message: 'Meetings fetched successfully',
+    };
   }
 
   async updateMeeting(
     meetingId: string,
     updateInfo: UpdateMeetingDto,
-  ): Promise<MeetingDocument> {
+  ): Promise<ApiResponse> {
     const meeting = await this.meetingModel.findById(meetingId);
 
     if (!meeting) {
@@ -108,10 +119,14 @@ export class MeetingService {
       },
     );
 
-    return updatedMeeting;
+    return {
+      status: 'success',
+      data: updatedMeeting,
+      message: 'Meeting updated successfully',
+    };
   }
 
-  async closeMeeting(meetingId: string): Promise<MeetingDocument> {
+  async closeMeeting(meetingId: string): Promise<ApiResponse> {
     const meeting = await this.meetingModel.findById(meetingId);
 
     if (!meeting) {
@@ -123,10 +138,14 @@ export class MeetingService {
 
     await meeting.save();
 
-    return meeting;
+    return {
+      status: 'success',
+      data: meeting,
+      message: 'Meeting closed successfully',
+    };
   }
 
-  async deleteMeeting(meetingId: string): Promise<MeetingDocument> {
+  async deleteMeeting(meetingId: string): Promise<ApiResponse> {
     const meeting = await this.meetingModel.findById(meetingId);
 
     if (!meeting) {
@@ -135,6 +154,10 @@ export class MeetingService {
 
     await meeting.remove({ new: true });
 
-    return meeting;
+    return {
+      status: 'success',
+      data: meeting,
+      message: 'Meeting deleted successfully',
+    };
   }
 }
