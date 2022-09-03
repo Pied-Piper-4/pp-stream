@@ -34,7 +34,7 @@ export class User {
   phone: string;
 
   @Prop({
-    select: false,
+    // select: false,
   })
   password: string;
 
