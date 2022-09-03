@@ -3,7 +3,7 @@ import React from 'react';
 export const VideoFuture = () => {
   return (
     <>
-      <div className="grid grid-cols-2 max-w-[1400px] px-[80px] py-[50px]">
+      <div className="grid grid-cols-2 max-w-[1400px] px-[80px] py-[50px] mx-auto">
         {/* <h3 className="text-[58px] text-center pt-[100px]">
           Future of live Streaming
         </h3> */}

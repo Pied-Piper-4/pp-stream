@@ -6,6 +6,7 @@ import { Banner } from './components/Banner/Banner';
 import { About } from './components/About/About';
 import { VideoFuture } from './components/Video/VideoFuture';
 import { Footer } from './components/Footer/Footer';
+import { Section } from './components/Section/Section';
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
       <Navbar />
       <Banner />
       <VideoFuture />
-      <About />
+      <Section />
+      {/* <About /> */}
+
       <Footer />
       {/* <Banner/> */}
     </>
