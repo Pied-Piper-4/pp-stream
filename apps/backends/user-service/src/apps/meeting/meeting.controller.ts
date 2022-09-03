@@ -17,14 +17,14 @@ export class MeetingController {
     return this.meetingService.createMeeting(userId, newMeetingDto);
   }
 
-  @Post('get/:meetingId')
+  @Get('get/:meetingId')
   async getMeetingById(
     @Param('meetingId') meetingId: string,
   ): Promise<ApiResponse> {
     return this.meetingService.getMeetingById(meetingId);
   }
 
-  @Post('get-all/:userId')
+  @Get('get-all/:userId')
   async getAllUsersMeeting(
     @Param('userId') userId: string,
   ): Promise<ApiResponse> {
