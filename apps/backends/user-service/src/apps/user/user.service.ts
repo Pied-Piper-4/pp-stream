@@ -22,7 +22,7 @@ export class UserService {
   ) {}
 
   async findUserByEmail(email: string): Promise<UserDocument> {
-    return this.userModel.findOne({ email });
+    return this.userModel.findOne({ email }).lean();
   }
 
   async createUserNormal(
@@ -35,8 +35,8 @@ export class UserService {
     }
 
     const newUser = new this.userModel(userDto);
-    const savedUser = await newUser.save();
-
+    await newUser.save();
+    const savedUser = await this.findUserByEmail(userDto.email);
     // Publish to all connected services
 
     delete savedUser.password;

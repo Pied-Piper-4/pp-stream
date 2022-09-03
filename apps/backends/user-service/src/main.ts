@@ -9,7 +9,7 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   const port = configService.get('port');
   const globalPrefix = configService.get('globalPrefix');
-
+  console.log(configService.get('mongodb'));
   const config = new DocumentBuilder()
     .setTitle('PP Stream User Service')
     .setDescription('The Piper Stream User Service API description')
