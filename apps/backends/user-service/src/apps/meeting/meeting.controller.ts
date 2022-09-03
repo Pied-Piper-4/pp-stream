@@ -1,5 +1,7 @@
-import { Body, Controller, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Public } from '../../common';
 import { CreateStreamDto, UpdateMeetingDto } from './dto/meeting.dto';
+import { CreateMeetingResponse } from './meeting.interface';
 import { MeetingDocument } from './meeting.model';
 import { MeetingService } from './meeting.service';
 
@@ -11,7 +13,7 @@ export class MeetingController {
   async createMeeting(
     @Body() newMeetingDto: CreateStreamDto,
     @Param('userId') userId: string,
-  ): Promise<MeetingDocument> {
+  ): Promise<CreateMeetingResponse> {
     return this.meetingService.createMeeting(userId, newMeetingDto);
   }
 
@@ -42,5 +44,12 @@ export class MeetingController {
     @Param('meetingId') meetingId: string,
   ): Promise<MeetingDocument> {
     return this.meetingService.deleteMeeting(meetingId);
+  }
+
+  @Get('generate-token/:meetingId')
+  @Public()
+  generateAgoraToken(@Param('meetingId') meetingId: string): string {
+    console.log(meetingId);
+    return this.meetingService.generateAgoraToken(meetingId);
   }
 }

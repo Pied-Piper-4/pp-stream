@@ -6,6 +6,14 @@ import { JwtService } from '@nestjs/jwt';
 import { v4 as uuidv4 } from 'uuid';
 import { CreateStreamDto, UpdateMeetingDto } from './dto/meeting.dto';
 import { UserService } from '../user/user.service';
+import {
+  RtcTokenBuilder,
+  RtmTokenBuilder,
+  RtcRole,
+  RtmRole,
+} from 'agora-access-token';
+import { ConfigService } from '@nestjs/config';
+import { CreateMeetingResponse } from './meeting.interface';
 
 @Injectable()
 export class MeetingService {
@@ -14,12 +22,29 @@ export class MeetingService {
     private readonly meetingModel: Model<MeetingDocument>,
     private jwtService: JwtService,
     private userService: UserService,
+    private configService: ConfigService,
   ) {}
+
+  generateAgoraToken(meetingId: string, isPublisher?: boolean): string {
+    const appId = this.configService.get('agoraAppId');
+    const appCertificate = this.configService.get('agoraAppCertificate');
+    console.log(appId, appCertificate);
+    const token = RtcTokenBuilder.buildTokenWithUid(
+      appId,
+      appCertificate,
+      meetingId,
+      772155,
+      isPublisher ? RtcRole.PUBLISHER : RtcRole.SUBSCRIBER,
+      0,
+    );
+
+    return token;
+  }
 
   async createMeeting(
     userId: string,
     meetingDto: CreateStreamDto,
-  ): Promise<MeetingDocument> {
+  ): Promise<CreateMeetingResponse> {
     const userExists = await this.userService.getUserById(userId);
 
     if (!userExists) {
@@ -31,7 +56,12 @@ export class MeetingService {
       link: 'https://pp-stream.live/' + uuidv4(),
     });
 
-    return meeting;
+    const meetingToken = this.generateAgoraToken(meeting._id, true);
+
+    return {
+      meeting,
+      token: meetingToken,
+    };
   }
 
   async getMeetingById(meetingId: string): Promise<MeetingDocument> {

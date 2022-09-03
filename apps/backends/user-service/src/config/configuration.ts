@@ -8,4 +8,6 @@ export default () => ({
     expiresIn: process.env.JWT_EXPIRES_IN || '7d',
     refreshSecret: process.env.JWT_REFRESH_SECRET || 'refreshSecret',
   },
+  agoraAppId: process.env.AGORA_APP_ID,
+  agoraAppCertificate: process.env.AGORA_APP_CERTIFICATE,
 });
