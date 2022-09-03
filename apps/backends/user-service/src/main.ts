@@ -17,7 +17,7 @@ async function bootstrap() {
     .addTag('pp-user')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('user-service/api', app, document);
+  SwaggerModule.setup('api-v1/api', app, document);
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.setGlobalPrefix(globalPrefix);
   await app.listen(port);
