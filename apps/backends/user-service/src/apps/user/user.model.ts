@@ -40,10 +40,10 @@ export class User {
 
   @Prop({
     default: [
-      'https://phubie-main.s3.amazonaws.com/admin/avatar/avatar1.svg',
-      'https://phubie-main.s3.amazonaws.com/admin/avatar/avatar2.svg',
-      'https://phubie-main.s3.amazonaws.com/admin/avatar/avatar3.svg',
-      'https://phubie-main.s3.amazonaws.com/admin/avatar/avatar4.svg',
+      'https://firebasestorage.googleapis.com/v0/b/pp-stream.appspot.com/o/A1.png?alt=media&token=9351feae-ae8c-4f0c-affb-46e866b55a98',
+      'https://firebasestorage.googleapis.com/v0/b/pp-stream.appspot.com/o/A2.png?alt=media&token=c28e4632-2f8f-4b5c-b1de-3ef16306fb3a',
+      'https://firebasestorage.googleapis.com/v0/b/pp-stream.appspot.com/o/A3.png?alt=media&token=0b9ebd38-9a89-47fc-9487-fcb063a2ccae',
+      'https://firebasestorage.googleapis.com/v0/b/pp-stream.appspot.com/o/A4.png?alt=media&token=97dd34ce-8b5e-4abc-a8b0-e53ea2722bac',
     ].at(Math.random() * 4),
   })
   pic: string;
