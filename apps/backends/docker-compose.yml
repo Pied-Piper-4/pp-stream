@@ -9,11 +9,4 @@ services:
     ports:
       - 4000:4000
 
-  meeting-services:
-    build:
-      context: ./meeting-service
-      dockerfile: Dockerfile
 
-    container_name: meeting-services
-    ports:
-      - 4001:4001

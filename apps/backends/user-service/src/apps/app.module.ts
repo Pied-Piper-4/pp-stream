@@ -7,6 +7,8 @@ import configuration from '../config/configuration';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseConfigService } from '../mongoose/mongoose';
 import { UserModule } from './user/user.module';
+import { MeetingModule } from './meeting/meeting.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import { UserModule } from './user/user.module';
       inject: [ConfigService],
     }),
     UserModule,
+    MeetingModule,
+    CommentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
