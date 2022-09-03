@@ -33,7 +33,7 @@ export type MeetingDocument = Meeting & Document;
   collection: 'meeting',
 })
 export class Meeting {
-  @Prop({ required: true, ref: 'user' })
+  @Prop({ required: true, ref: 'User', type: mongoose.Schema.Types.ObjectId })
   creatorId: mongoose.Schema.Types.ObjectId;
 
   @Prop({ required: true })

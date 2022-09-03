@@ -7,6 +7,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtConfigService } from '../jwt/jwt.config.service';
 import { UserModule } from '../user/user.module';
+import { User, UserSchema } from '../user/user.model';
 
 @Module({
   controllers: [MeetingController],
