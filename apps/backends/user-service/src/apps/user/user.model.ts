@@ -72,6 +72,11 @@ export class User {
     default: false,
   })
   isGoogleAuth: boolean;
+
+  @Prop({
+    default: true,
+  })
+  isActive: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -1,4 +1,5 @@
-import { IsEmail, IsString } from 'class-validator';
+import { IsBoolean, IsEmail, IsOptional, IsString } from 'class-validator';
+import { User } from '../user.model';
 
 export class CreateUserNormal {
   @IsString()
@@ -19,4 +20,34 @@ export class LoginUserNormalDto {
 
   @IsString()
   password: string;
+}
+
+export class GoogleAuthDto {
+  @IsString()
+  name: string;
+
+  @IsEmail()
+  email: string;
+
+  @IsString()
+  pic: string;
+}
+
+export class UpdateUserDto {
+  @IsOptional()
+  name?: string;
+
+  @IsOptional()
+  bio?: string;
+
+  @IsOptional()
+  pic?: string;
+
+  @IsOptional()
+  phone?: string;
+}
+
+export class ActivateDeactivateUserDto {
+  @IsBoolean()
+  isActive: boolean;
 }
