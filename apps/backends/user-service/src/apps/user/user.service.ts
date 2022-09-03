@@ -84,13 +84,22 @@ export class UserService {
     let user = await this.findUserByEmail(userDto.email);
 
     if (!user) {
-      const newUser = new this.userModel(userDto);
-      user = await newUser.save();
+      user = new this.userModel(userDto);
+      await user.save();
+      const newUser = await this.findUserByEmail(userDto.email);
+
+      const token = this.jwtService.sign(newUser);
+
+      return {
+        message: 'User logged in successfully',
+        user: newUser,
+        token,
+      };
     }
 
-    delete user.password;
+    const newUser = await this.findUserByEmail(userDto.email);
 
-    const token = this.jwtService.sign(user);
+    const token = this.jwtService.sign(newUser);
 
     return {
       message: 'User logged in successfully',
