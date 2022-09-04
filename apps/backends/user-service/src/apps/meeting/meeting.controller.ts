@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { Public } from '../../common';
 import { ApiResponse } from '../../util';
 import { CreateStreamDto, UpdateMeetingDto } from './dto/meeting.dto';
@@ -52,6 +52,13 @@ export class MeetingController {
     success: string;
   } {
     return this.meetingService.generateAgoraToken(meetingId);
+  }
+
+  @Patch('close/:meetingId')
+  async closeMeeting(
+    @Param('meetingId') meetingId: string,
+  ): Promise<ApiResponse> {
+    return this.meetingService.closeMeeting(meetingId);
   }
 
   @Get('public/meetings')
