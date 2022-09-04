@@ -26,7 +26,13 @@ export class MeetingService {
     private configService: ConfigService,
   ) {}
 
-  generateAgoraToken(meetingId: string, isPublisher?: boolean): string {
+  generateAgoraToken(
+    meetingId: string,
+    isPublisher?: boolean,
+  ): {
+    token: string;
+    success: string;
+  } {
     const appId = this.configService.get('agoraAppId');
     const appCertificate = this.configService.get('agoraAppCertificate');
     console.log(appId, appCertificate);
@@ -39,7 +45,10 @@ export class MeetingService {
       0,
     );
 
-    return token;
+    return {
+      token,
+      success: 'success',
+    };
   }
 
   async createMeeting(
@@ -62,7 +71,7 @@ export class MeetingService {
 
     return {
       status: 'success',
-      token: meetingToken,
+      token: meetingToken.token,
       data: meeting,
       message: 'Meeting created successfully',
     };

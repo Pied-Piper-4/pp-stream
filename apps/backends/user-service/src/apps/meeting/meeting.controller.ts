@@ -48,8 +48,10 @@ export class MeetingController {
 
   @Get('generate-token/:meetingId')
   @Public()
-  generateAgoraToken(@Param('meetingId') meetingId: string): string {
-    console.log(meetingId);
+  generateAgoraToken(@Param('meetingId') meetingId: string): {
+    token: string;
+    success: string;
+  } {
     return this.meetingService.generateAgoraToken(meetingId);
   }
 }
