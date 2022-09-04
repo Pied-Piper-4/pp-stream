@@ -13,7 +13,6 @@ export class MeetingController {
     @Body() newMeetingDto: CreateStreamDto,
     @Param('userId') userId: string,
   ): Promise<ApiResponse> {
-    console.log(userId);
     return this.meetingService.createMeeting(userId, newMeetingDto);
   }
 
