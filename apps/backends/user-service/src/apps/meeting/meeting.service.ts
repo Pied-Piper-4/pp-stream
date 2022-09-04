@@ -171,4 +171,19 @@ export class MeetingService {
       message: 'Meeting deleted successfully',
     };
   }
+
+  async getAllPublicMeetings(): Promise<ApiResponse> {
+    const meetings = await this.meetingModel
+      .find({
+        isPrivate: false,
+      })
+      .populate('creatorId')
+      .populate('liveUsers.userId');
+
+    return {
+      status: 'success',
+      data: meetings,
+      message: 'Meetings fetched successfully',
+    };
+  }
 }

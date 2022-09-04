@@ -54,4 +54,9 @@ export class MeetingController {
   } {
     return this.meetingService.generateAgoraToken(meetingId);
   }
+
+  @Get('public/meetings')
+  async getAllPublicMeetings(): Promise<ApiResponse> {
+    return this.meetingService.getAllPublicMeetings();
+  }
 }
