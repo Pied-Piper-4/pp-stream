@@ -149,7 +149,9 @@ export class MeetingService {
     meeting.closed = true;
     // Broadcast to remove all users from stream
 
-    await meeting.save();
+    await (
+      await (await meeting.save()).populate('creatorId')
+    ).populate('liveUsers.userId');
 
     return {
       status: 'success',
