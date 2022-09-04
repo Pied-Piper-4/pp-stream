@@ -7,6 +7,10 @@ export class CreateStreamDto {
   @IsOptional()
   @IsString()
   description: string;
+
+  @IsBoolean()
+  @IsOptional()
+  isPrivate: boolean;
 }
 
 export class UpdateMeetingDto {
