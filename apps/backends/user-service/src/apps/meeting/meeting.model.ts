@@ -52,6 +52,15 @@ export class Meeting {
   closed: boolean;
 
   @Prop({
+    type: Boolean,
+    boolean: false,
+  })
+  isPrivate: boolean;
+
+  @Prop()
+  key: string;
+
+  @Prop({
     type: String,
   })
   link: string;
