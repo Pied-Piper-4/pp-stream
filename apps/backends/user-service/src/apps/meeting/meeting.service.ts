@@ -67,12 +67,14 @@ export class MeetingService {
       creatorId: userId,
     });
 
-    const meetingToken = this.generateAgoraToken(meeting._id, true);
+    const newMeeting = await this.meetingModel
+      .findById(meeting._id)
+      .populate('creatorId')
+      .populate('liveUsers.userId');
 
     return {
       status: 'success',
-      token: meetingToken.token,
-      data: meeting,
+      data: newMeeting,
       message: 'Meeting created successfully',
     };
   }
